@@ -1,0 +1,6 @@
+stock-2.log
+.idea/
+CMakeLists.txt
+cmake-build-debug/
+*.o
+tail

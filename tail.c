@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAX_LINE 511
+#define MAX_LINE 85
 
 /* parser for -n NUM parameter
  * returns number of lines to be printed / from what line to print
@@ -33,16 +33,37 @@ long int parseN(char *argv[], bool *plus) {
     return lines;
 }
 
-void printTail(FILE *fp, long int lines) {
+void removeLeftoverLine(FILE *fp) {
+    char lineThrow[MAX_LINE];
+    do {
+        fgets(lineThrow, MAX_LINE, fp);
+    } while (strstr(lineThrow, "\n") == NULL);
+}
+
+void printPlusTail(FILE *fp, long int lines) {
     /*
      * allocate lines*511 array
      * cycle through it with fgets and print last 'lines' at the end
-     * somehow check for lines that are longer than 511
+     * somehow check for lines that are longer than 512
      */
-
+    bool printErr = true;
     char line[MAX_LINE];
+    unsigned long count = 0;
     while(fgets(line, MAX_LINE, fp) != NULL) {
-        printf("%s", line);
+        count++;
+        if (count < lines)
+            continue;
+
+        if (strstr(line, "\n") != NULL) {
+            printf("%s", line);
+        } else {
+            removeLeftoverLine(fp);
+            printf("%s\n", line);
+            if (printErr == true) {
+                printErr = false;
+                fprintf(stderr,"Line overflow detected\n");
+            }
+        }
     }
 }
 
@@ -61,7 +82,6 @@ int main(int argc, char* argv[]) {
     switch (argc) {
         case 1:
             // last 10 from stdin
-            printTail(fp, lines);
             break;
 
         case 2:
@@ -70,7 +90,6 @@ int main(int argc, char* argv[]) {
             if (fp == NULL) {
                 fprintf(stderr, "Failed to open file %s", argv[argc - 1]);
             }
-            printTail(fp, lines);
             break;
 
         case 3:
@@ -80,7 +99,6 @@ int main(int argc, char* argv[]) {
                 fprintf(stderr, "Invalid parameters\n");
                 return 1;
             }
-            printTail(fp, lines);
             break;
 
         case 4:
@@ -94,13 +112,19 @@ int main(int argc, char* argv[]) {
                 fprintf(stderr, "Invalid parameters\n");
                 return 1;
             }
-            printTail(fp, lines);
             break;
 
         default:
             fprintf(stderr, "Too many parameters\n");
             return 1;
     }
+
+    if (plus == true) {
+        printPlusTail(fp, lines);
+    }
+
+
+
 
     return 0;
 }

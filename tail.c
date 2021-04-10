@@ -100,10 +100,10 @@ int main(int argc, char* argv[]) {
             break;
 
         case 2:
-            // last 10 from file
+            // last 10 from a file
             fp = fopen(argv[argc - 1], "r");
             if (fp == NULL) {
-                fprintf(stderr, "Failed to open file %s", argv[argc - 1]);
+                fprintf(stderr, "Failed to open file %s\n", argv[argc - 1]);
             }
             break;
 
@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
             // n specified + file
             fp = fopen(argv[argc - 1], "r");
             if (fp == NULL) {
-                fprintf(stderr, "Failed to open file %s", argv[argc - 1]);
+                fprintf(stderr, "Failed to open file %s\n", argv[argc - 1]);
             }
             lines = parseN(argv, &plus);
             if (lines < 0) {

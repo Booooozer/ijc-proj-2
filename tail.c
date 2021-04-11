@@ -5,9 +5,9 @@
 
 #define MAX_LINE 512
 
-/* parser for -n NUM parameter
+/*
+ * parser for -n NUM parameter
  * returns number of lines to be printed / from what line to print
- * when '+' is specified
  * returns true in a pointer to bool when '+' is specified
  */
 long int parseN(char *argv[], bool *plus) {
@@ -32,6 +32,7 @@ long int parseN(char *argv[], bool *plus) {
     return lines;
 }
 
+// removes leftover when currently read line exceeds length MAX_LINE
 void removeLeftoverLine(FILE *fp) {
     char lineThrow[MAX_LINE];
     do {
@@ -39,12 +40,13 @@ void removeLeftoverLine(FILE *fp) {
     } while (strstr(lineThrow, "\n") == NULL);
 }
 
-
+// prints specified number of lines from the end of file
 void printTail(FILE *fp, long int lines) {
     char lineArr[lines][MAX_LINE];
     bool printErr = true;
     unsigned long count = 0;
 
+    // cycles through array and stores newly red lines
     while (fgets(lineArr[count % lines], MAX_LINE, fp) != NULL){
         if (strstr(lineArr[count % lines], "\n") == NULL) {
             //lineArr[count % lines][MAX_LINE - 2] = '\n';
@@ -57,6 +59,7 @@ void printTail(FILE *fp, long int lines) {
         count++;
     }
 
+    // prints out last lines in the same order as they were saved in file
     for (int i = 0; i < lines; i++) {
         if (strstr(lineArr[count % lines], "\n") == NULL) {
             printf("%s\n", lineArr[(count + i) % lines]);
@@ -66,6 +69,7 @@ void printTail(FILE *fp, long int lines) {
     }
 }
 
+// prints all lines from specified line
 void printPlusTail(FILE *fp, long int lines) {
     bool printErr = true;
     char line[MAX_LINE];
@@ -139,9 +143,6 @@ int main(int argc, char* argv[]) {
     } else if (plus == false) {
         printTail(fp, lines);
     }
-
-
-
 
     return 0;
 }

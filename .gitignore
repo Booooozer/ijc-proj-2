@@ -6,3 +6,4 @@ cmake-build-debug/
 *.o
 tail
 vgcore*
+proj2Notes

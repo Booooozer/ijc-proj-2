@@ -15,8 +15,8 @@ bool htab_erase(htab_t * t, htab_key_t key) {
         // keys match
         t->arr[index] = itm->next;
         itm->next = NULL;
-        //free(&itm->pair.key);
-        free(&itm);
+        free((char*)itm->pair.key);
+        free(itm);
         t->size--;
         return true;
     } else {
@@ -28,8 +28,8 @@ bool htab_erase(htab_t * t, htab_key_t key) {
                 // key in list matches
                 prev->next = itm->next;
                 itm->next = NULL;
-                //free(&itm->pair.key);
-                free(&itm);
+                free((char*)itm->pair.key);
+                free(itm);
                 t->size--;
                 return true;
             }

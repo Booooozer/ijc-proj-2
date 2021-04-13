@@ -1,6 +1,7 @@
 //
 // Created by tom on 4/11/21.
-//
+// htab.h -- rozhraní knihovny htab (řešení IJC-DU2)
+// Licence: žádná (Public domain)
 
 #ifndef HTAB_H
 #define HTAB_H

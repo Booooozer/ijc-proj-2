@@ -12,12 +12,9 @@ htab_t *htab_move(size_t n, htab_t *from) {
     if (to == NULL) {
         return NULL;
     }
-    /*
-    for (size_t i = 0; i < from->arr_size; i++) {
-        to->arr[i] = from->arr[i];
-        from->arr[i] = NULL;
-    }
-    */
+
+    // recalculate indexes of item and store them in new table
+
     return to;
 }
 

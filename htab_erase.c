@@ -15,7 +15,9 @@ bool htab_erase(htab_t * t, htab_key_t key) {
         // keys match
         t->arr[index] = itm->next;
         itm->next = NULL;
+        //free(&itm->pair.key);
         free(&itm);
+        t->size--;
         return true;
     } else {
         // run through linked list and search for key
@@ -26,7 +28,9 @@ bool htab_erase(htab_t * t, htab_key_t key) {
                 // key in list matches
                 prev->next = itm->next;
                 itm->next = NULL;
+                //free(&itm->pair.key);
                 free(&itm);
+                t->size--;
                 return true;
             }
             prev = itm;

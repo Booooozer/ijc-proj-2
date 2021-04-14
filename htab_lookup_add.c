@@ -22,15 +22,27 @@ htab_pair_t * htab_lookup_add(htab_t * t, htab_key_t key) {
     // allocate length of key + \0 because strlen() excludes that
     size_t keySize = strlen(key) + 1;
     newItm->pair.key = malloc(keySize);
+    if (newItm->pair.key == NULL) {
+        free(newItm);
+        return NULL;
+    }
     memcpy((char*)newItm->pair.key, key, keySize);
-    //newItm->next = NULL;
+    newItm->next = NULL;
     newItm->pair.value = 1;
 
     // calculate index of new key
     size_t index = htab_hash_function(key) % t->arr_size;
-    // store new item to the front of linked list
-    newItm->next = t->arr[index];
-    t->arr[index] = newItm;
+    // empty index
+    if (t->arr[index] == NULL) {
+        t->arr[index] = newItm;
+    } else {
+        struct htab_item *tmp;
+        tmp = t->arr[index];
+        while (tmp->next != NULL) {
+            tmp = tmp->next;
+        }
+        tmp->next = newItm;
+    }
 
     return &newItm->pair;
 }

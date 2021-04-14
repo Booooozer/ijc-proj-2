@@ -10,6 +10,9 @@ bool htab_erase(htab_t * t, htab_key_t key) {
     size_t index = htab_hash_function(key) % t->arr_size;
 
     struct htab_item *itm = t->arr[index];
+    if (itm == NULL) {
+        return false;
+    }
     // compare keys with first item on index
     if (strcmp(itm->pair.key, key) == 0) {
         // keys match

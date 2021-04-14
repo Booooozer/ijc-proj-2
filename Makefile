@@ -8,5 +8,8 @@ tail: tail.o
 tail.o: tail.c
 	$(CC) $(CFLAGS) -c $^ -o $@
 
+wordcount: wordcount.c io.c htab*
+	$(CC) $(CFLAGS) $^ -o $@
+
 clean:
 	rm *.o $(EXEC)

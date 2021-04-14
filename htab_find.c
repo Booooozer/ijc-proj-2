@@ -10,6 +10,11 @@ htab_pair_t * htab_find(htab_t * t, htab_key_t key) {
     size_t index = htab_hash_function(key) % t->arr_size;
 
     struct htab_item *itm = t->arr[index];
+    // empty index
+    if (itm == NULL) {
+        return NULL;
+    }
+
     // compare keys with first item on index
     if (strcmp(itm->pair.key, key) == 0) {
         // keys match

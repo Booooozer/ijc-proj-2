@@ -7,14 +7,11 @@
 #include "htab_struct.h"
 
 htab_t *htab_init(size_t n) {
-    htab_t *table = malloc(sizeof(htab_t) + n * sizeof(struct htab_item *));
+    htab_t *table = calloc(n, sizeof(htab_t) + n * sizeof(struct htab_item *));
     if (table == NULL) {
         return NULL;
     }
 
-    for (size_t i = 0; i < n; i++) {
-        table->arr[i] = NULL;
-    }
     table->size = 0;
     table->arr_size = n;
     return table;

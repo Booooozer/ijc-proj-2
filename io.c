@@ -36,7 +36,7 @@ int read_word(char *s, int max, FILE *f) {
 
     // too long word
     if (length == max - 1) {
-        while (isspace(c = fgetc(f))) {
+        while (isspace(c = fgetc(f)) == 0) {    // isspace() returns nonzero when c is white-space
             length++;
         }
     }

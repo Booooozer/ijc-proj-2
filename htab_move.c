@@ -13,7 +13,6 @@ htab_t *htab_move(size_t n, htab_t *from) {
         return NULL;
     }
 
-    to->arr_size = from->arr_size;
     to->size = from->size;
 
     // recalculate indexes of item and store them in new table
@@ -30,8 +29,6 @@ htab_t *htab_move(size_t n, htab_t *from) {
             itemMove->next = to->arr[newIndex];
             to->arr[newIndex] = itemMove;
         }
-
-
     }
 
     return to;

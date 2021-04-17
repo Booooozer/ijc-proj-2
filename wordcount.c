@@ -46,11 +46,11 @@ int main(int argc, char *argv[]) {
 
     printf("\n==================================================\n\n");
 
-    //htab_t *t2 = htab_move(32256, t);
-    //htab_for_each(t2, printHash);
+    htab_t *t2 = htab_move(32443, t);
+    htab_for_each(t2, printHash);
 
     htab_free(t);
-    //htab_free(t2);
+    htab_free(t2);
 
     fclose(fp);
 

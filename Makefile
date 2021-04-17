@@ -25,7 +25,6 @@ libhtab.a: $(htab_dep)
 libhtab.so: $(htab_dep)
 	$(CC) $(CFLAGS) -shared -o $@ $^
 
-
 #### Object files
 tail.o: tail.c
 	$(CC) -g -std=c99 -pedantic -Wall -Wextra -c $^

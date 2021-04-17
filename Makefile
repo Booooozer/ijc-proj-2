@@ -41,8 +41,11 @@ io.o: io.c io.h
 
 #### MISC
 run: $(exec)
-	#./wordcount proj2Notes
+	./wordcount proj2Notes
 	LD_LIBRARY_PATH="." ./wordcount-dynamic proj2Notes
 
 clean:
 	rm -f *.o $(exec) libhtab.a libhtab.so
+
+zip:
+	zip xmatus37.zip *.c *.h Makefile

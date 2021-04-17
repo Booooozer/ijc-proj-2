@@ -7,6 +7,8 @@
 #include "htab.h"
 #include "io.h"
 
+#include <stdint.h>
+
 #define WORD_MAX 128
 
 #ifdef HASHTEST
@@ -18,7 +20,7 @@ void printHash(htab_pair_t *data) {
 }
 
 int main(int argc, char *argv[]) {
-    // TODO open file, warning checking
+    // TODO open file, warning checking, string length check - print error
     if (argc > 2) {
         fprintf(stderr, "Too many parameters\n");
         return 1;
@@ -46,11 +48,14 @@ int main(int argc, char *argv[]) {
 
     printf("\n==================================================\n\n");
 
+    #ifdef MOVETEST
     htab_t *t2 = htab_move(32443, t);
     htab_for_each(t2, printHash);
 
-    htab_free(t);
     htab_free(t2);
+    #endif
+
+    htab_free(t);
 
     fclose(fp);
 

@@ -7,7 +7,7 @@
 #include "htab_struct.h"
 
 htab_t *htab_init(size_t n) {
-    htab_t *table = calloc(n, sizeof(htab_t) + n * sizeof(struct htab_item *));
+    htab_t *table = calloc(1, sizeof(htab_t) + n * sizeof(struct htab_item *));
     if (table == NULL) {
         return NULL;
     }

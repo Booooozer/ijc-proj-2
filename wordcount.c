@@ -7,7 +7,7 @@
 #include "htab.h"
 #include "io.h"
 
-#define WORD_MAX 8
+#define WORD_MAX 128
 
 #ifdef HASHTEST
     // TODO add different hashfunc
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 
     char word[WORD_MAX];
 
-    htab_t *t = htab_init(2);
+    htab_t *t = htab_init(64513);
 
     while (read_word(word, WORD_MAX, fp) != EOF) {
         htab_lookup_add(t, word);
@@ -46,11 +46,11 @@ int main(int argc, char *argv[]) {
 
     printf("\n==================================================\n\n");
 
-    htab_t *t2 = htab_move(400, t);
-    htab_for_each(t2, printHash);
+    //htab_t *t2 = htab_move(32256, t);
+    //htab_for_each(t2, printHash);
 
     htab_free(t);
-    htab_free(t2);
+    //htab_free(t2);
 
     fclose(fp);
 

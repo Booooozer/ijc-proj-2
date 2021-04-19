@@ -40,10 +40,6 @@ io.o: io.c io.h
 	$(CC) $(CFLAGS) -c $^
 
 #### MISC
-run: $(exec)
-	./wordcount proj2Notes
-	LD_LIBRARY_PATH="." ./wordcount-dynamic proj2Notes
-
 clean:
 	rm -f *.o $(exec) libhtab.a libhtab.so
 

@@ -1,3 +1,11 @@
+###############################
+# Řešení IJC-DU2
+# Autor: Tomáš Matuš, FIT VUT Brno
+# Login: xmatus37
+# Datum: 19.4.2021
+# Přeloženo: gcc 10.2.0
+###############################
+
 CC=gcc
 CFLAGS=-g -std=c99 -pedantic -fPIC -Wall -Wextra
 exec=tail wordcount wordcount-dynamic

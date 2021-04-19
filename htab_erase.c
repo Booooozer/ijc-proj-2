@@ -1,6 +1,10 @@
-//
-// Created by tom on 4/13/21.
-//
+/*
+ * Řešení IJC-DU2
+ * Autor: Tomáš Matuš, FIT VUT Brno
+ * Login: xmatus37
+ * Datum: 19.4.2021
+ * Přeloženo: gcc 10.2.0
+ */
 
 #include <stdlib.h>
 #include "htab.h"

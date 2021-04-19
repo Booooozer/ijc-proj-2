@@ -1,3 +1,11 @@
+/*
+ * Řešení IJC-DU2
+ * Autor: Tomáš Matuš, FIT VUT Brno
+ * Login: xmatus37
+ * Datum: 19.4.2021
+ * Přeloženo: gcc 10.2.0
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

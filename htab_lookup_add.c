@@ -14,7 +14,6 @@
 htab_pair_t * htab_lookup_add(htab_t * t, htab_key_t key) {
     htab_pair_t *itm = htab_find(t, key);
     if (itm != NULL) {
-        itm->value++;
         return itm;
     }
 
@@ -32,7 +31,7 @@ htab_pair_t * htab_lookup_add(htab_t * t, htab_key_t key) {
     }
     memcpy((char*)newItm->pair.key, key, keySize);
     newItm->next = NULL;
-    newItm->pair.value = 1;
+    newItm->pair.value = 0;
 
     // calculate index of new key
     size_t index = htab_hash_function(key) % t->arr_size;

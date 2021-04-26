@@ -61,13 +61,15 @@ int main(int argc, char *argv[]) {
     char word[WORD_MAX];
 
     htab_t *t = htab_init(HASH_TAB_SIZE);
+    htab_pair_t *tmp;
     int wordLen;
-    while ( (wordLen = read_word(word, WORD_MAX, fp)) != EOF) {
+    while ((wordLen = read_word(word, WORD_MAX, fp)) != EOF) {
         if (wordLen > WORD_MAX && err == 1) {
             fprintf(stderr, "Word overflow detected\n");
             err = 0;
         }
-        htab_lookup_add(t, word);
+        tmp = htab_lookup_add(t, word);
+        tmp->value++;
     }
 
     htab_for_each(t, printHash);

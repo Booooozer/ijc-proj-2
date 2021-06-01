@@ -7,3 +7,5 @@ cmake-build-debug/
 tail
 vgcore*
 proj2Notes
+text
+*.zip

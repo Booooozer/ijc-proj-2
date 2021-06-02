@@ -314,8 +314,3 @@ Obecné pokyny pro vypracování domácích úkolů
 * Posílejte pouze nezbytně nutné soubory -- ne *.EXE !
 
 * Řešení se odevzdává elektronicky v IS FIT
-
-* Úkoly neodevzdané v termínu (podle WIS) budou za 0 bodů.
-
-* Opsané úkoly budou hodnoceny 0 bodů pro všechny zůčastněné
-  a to bez výjimky (+ bonus v podobě návštěvy u disciplinární komise).
